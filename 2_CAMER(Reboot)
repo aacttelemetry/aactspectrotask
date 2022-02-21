@@ -1,0 +1,21 @@
+import os
+import cv2
+import time
+
+CameraPorts = [0,1]
+Restart = [0]
+
+for Port in CameraPorts:
+    image_no = Port + 1
+    print('processing image %s'%(image_no))
+    webcam = cv2.VideoCapture(Port)
+    check, frame = webcam.read()
+    str_time = time.strftime('%m-%d-%y-%H%M%S.jpg')
+    cv2.imwrite(filename=str_time, img=frame)
+    print('successfully wrote image %s as %s'%(image_no,str_time))
+    webcam.release()
+    
+for run in Restart:
+    os.system('sudo reboot')
+    run += 1
+ 
